@@ -7,6 +7,11 @@ Start the server with:
     uvicorn backend.app.main:app --reload --host 0.0.0.0 --port 8000
 """
 
+from backend.app.api.routes import router
+from backend.app.database import create_tables
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
+from contextlib import asynccontextmanager
 import sys
 import os
 
@@ -18,14 +23,6 @@ PROJECT_ROOT = os.path.abspath(
 )
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
-
-from contextlib import asynccontextmanager
-
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-from backend.app.database import create_tables
-from backend.app.api.routes import router
 
 
 # ---------------------------------------------------------------------------
@@ -68,7 +65,7 @@ app.add_middleware(
 # ---------------------------------------------------------------------------
 @app.get("/", tags=["Root"])
 def root():
-    """API root — confirms the service is running."""
+    """API  — confirms the service is running."""
     return {"message": "Crop Price Prediction API"}
 
 

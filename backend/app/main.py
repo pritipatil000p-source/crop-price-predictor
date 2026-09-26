@@ -65,7 +65,7 @@ app.add_middleware(
 # ---------------------------------------------------------------------------
 @app.get("/", tags=["Root"])
 def root():
-    """API  — confirms the service is running."""
+    """API priti — confirms the service is running."""
     return {"message": "Crop Price Prediction API"}
 
 
